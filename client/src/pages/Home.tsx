@@ -1,9 +1,21 @@
 import { useState } from "react";
-import { ChevronDown, BookOpen, Zap, Target, Award } from "lucide-react";
+import { ChevronDown, BookOpen, Zap, Target, Award, Volume2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Home() {
   const [expandedStage, setExpandedStage] = useState<number | null>(0);
+
+  // Function to speak a word
+  const speak = (word: string) => {
+    if ('speechSynthesis' in window) {
+      speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      utterance.pitch = 1;
+      speechSynthesis.speak(utterance);
+    }
+  };
 
   const stages = [
     {
@@ -131,16 +143,16 @@ export default function Home() {
       },
     },
     {
-      title: "第九阶段：音节类型",
+      title: "第九阶段：音节类型 (Syllable Types)",
       subtitle: "学习单词划分",
       description: "掌握音节类型能帮助你读出超长单词。",
       content: {
         rule: "每个音节必须包含一个元音发音。",
         examples: [
-          { letter: "闭音节", words: ["nap-kin", "bas-ket", "rab-bit", "hap-py"] },
-          { letter: "开音节", words: ["be", "hi", "go", "pa-per", "mu-sic"] },
-          { letter: "魔法E音节", words: ["cake", "bike", "home", "ex-cite"] },
-          { letter: "-le 音节", words: ["ap-ple", "ta-ble", "tur-tle", "bub-ble"] },
+          { letter: "闭音节", words: ["napkin", "basket", "rabbit", "happy"] },
+          { letter: "开音节", words: ["be", "hi", "go", "paper", "music"] },
+          { letter: "魔法E音节", words: ["cake", "bike", "home", "excite"] },
+          { letter: "-le 音节", words: ["apple", "table", "turtle", "bubble"] },
         ],
       },
     },
@@ -154,7 +166,7 @@ export default function Home() {
           { letter: "Schwa /ə/", words: ["about", "banana", "sofa", "pencil", "lemon"] },
           { letter: "-tion /ʃən/", words: ["action", "nation", "station", "motion"] },
           { letter: "-sion /ʃən/", words: ["vision", "mission", "passion", "session"] },
-          { letter: "高频词", words: ["the", "was", "said", "you", "of", "are"] },
+          { letter: "高频词", words: ["the", "was", "said", "you", "of"] },
         ],
       },
     },
@@ -188,7 +200,7 @@ export default function Home() {
             </h1>
           </div>
           <div className="text-sm text-gray-600">
-            12 个核心阶段 • 解锁 98% 的单词拼读规律
+            12 个核心阶段 • 解锁 98% 的单词拼读规律 • 🔊 点击单词听发音
           </div>
         </div>
       </header>
@@ -218,6 +230,10 @@ export default function Home() {
             <div className="flex items-center gap-2 bg-green-100 px-4 py-2 rounded-full">
               <Award className="w-5 h-5 text-green-600" />
               <span className="text-green-900 font-medium">实战应用</span>
+            </div>
+            <div className="flex items-center gap-2 bg-purple-100 px-4 py-2 rounded-full">
+              <Volume2 className="w-5 h-5 text-purple-600" />
+              <span className="text-purple-900 font-medium">音频发音</span>
             </div>
           </div>
         </div>
@@ -277,12 +293,14 @@ export default function Home() {
                           </div>
                           <div className="flex flex-wrap gap-2">
                             {example.words.map((word, wIdx) => (
-                              <span
+                              <button
                                 key={wIdx}
-                                className="inline-block bg-blue-100 text-blue-900 px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-200 transition-colors"
+                                onClick={() => speak(word)}
+                                className="inline-flex items-center gap-1 bg-blue-100 text-blue-900 px-3 py-1 rounded-full text-sm font-medium hover:bg-blue-200 transition-colors cursor-pointer"
                               >
+                                <Volume2 className="w-3 h-3" />
                                 {word}
-                              </span>
+                              </button>
                             ))}
                           </div>
                         </div>
@@ -360,7 +378,7 @@ export default function Home() {
       <footer className="bg-gray-900 text-gray-400 py-8 border-t border-gray-800">
         <div className="container mx-auto px-4 text-center">
           <p>
-            © 2026 终极自然拼读全能指南 • 帮助学习者掌握英语拼读规律
+            © 2026 终极自然拼读全能指南 • 帮助学习者掌握英语拼读规律 • 🔊 点击单词听发音
           </p>
         </div>
       </footer>
