@@ -1,3 +1,4 @@
+import { Link } from 'wouter';
 import { useState } from "react";
 import { ChevronDown, BookOpen, Zap, Target, Award, Volume2, AlertCircle, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -638,6 +639,15 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
+            <Link href="/practice">
+              <Button
+                size="lg"
+                variant="outline"
+                className="px-8 py-3 rounded-lg font-bold"
+              >
+                开始练习
+              </Button>
+            </Link>
       <section className="container mx-auto px-4 py-16">
         <div className="max-w-2xl mx-auto text-center">
           <h3 className="text-3xl font-bold mb-4 text-gray-900">
