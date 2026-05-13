@@ -37,7 +37,7 @@
 
 ```bash
 # 克隆仓库
-git clone https://github.com/YOUR_USERNAME/phonics-guide-website.git
+git clone https://github.com/samuelhu/phonics-guide-website.git
 cd phonics-guide-website
 
 # 安装依赖
@@ -287,7 +287,7 @@ pnpm run format
 
 **版本**：1.0.0  
 **最后更新**：2026年5月13日  
-**维护者**：[Your Name](https://github.com/YOUR_USERNAME)
+**维护者**：[Your Name](https://github.com/samuelhu)
 
 ---
 
