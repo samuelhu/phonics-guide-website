@@ -18,6 +18,13 @@ export default function Home() {
     }
   };
 
+  const scrollToLearningSection = () => {
+    document.getElementById("learning-stages")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
   const stages = [
     {
       title: "第一阶段：基础地基 (CVC & Short Vowels)",
@@ -509,7 +516,7 @@ export default function Home() {
       </section>
 
       {/* Stages Section */}
-      <section className="container mx-auto px-4 py-16">
+      <section id="learning-stages" className="container mx-auto px-4 py-16 scroll-mt-24">
         <div className="max-w-4xl mx-auto">
           <h3 className="text-3xl font-bold mb-12 text-center text-gray-900">
             11 个核心学习阶段
@@ -658,6 +665,7 @@ export default function Home() {
             从今天开始，掌握这 11 个核心阶段，让英语不再是难题。
           </p>
           <Button
+            onClick={scrollToLearningSection}
             size="lg"
             className="bg-gradient-to-r from-blue-600 to-red-600 hover:from-blue-700 hover:to-red-700 text-white px-8 py-3 rounded-lg font-bold"
           >
